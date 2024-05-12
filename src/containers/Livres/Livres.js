@@ -46,6 +46,7 @@ class Livres extends Component {
                 lastIdLivre: oldState.lastIdLivre + 1
             }
         })
+        this.props.fermerAjoutLivre();
 
     }
 
