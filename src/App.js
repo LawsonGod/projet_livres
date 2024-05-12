@@ -21,7 +21,7 @@ class App extends Component {
       <div className='container'>
         < Horloge />
         <TitreH1>page listant les livres</TitreH1>
-        <Livres ajoutLivre={this.state.ajoutLivre}/>
+        <Livres ajoutLivre={this.state.ajoutLivre} fermerAjoutLivre={() => this.setState({ajoutLivre:false})}/>
         <Button typeBtn="btn-success" 
           css= "w-100" 
           clic={this.handleAjouterLivre}>

@@ -14,11 +14,11 @@ class Livres extends Component {
             {id: "6", titre: "Ce que tu as fait de moi", auteur: "Karine Giebel", nombreDePage: "528"},
             {id: "7", titre: "Dimanche", auteur: "Georges Simenon", nombreDePage: "200"},
             {id: "8", titre: " Le Chien jaune", auteur: "Georges Simenon", nombreDePage: "150"}
-
-            
-        ]
+        ],
+        lastIdLivre : 8
 
     }
+
     handleSuppressionLivre = (id) => {
         const livreIndexTab = this.state.livres.findIndex(element => {
                     return element.id === id;
@@ -28,7 +28,27 @@ class Livres extends Component {
         newLivres.splice(livreIndexTab,1);
 
         this.setState({livres:newLivres});
-}
+    }
+
+    handleAjoutLivre = (titre, auteur, nombreDePage) =>{
+        const newLivre = {
+            id:this.state.lastIdLivre + 1,
+            titre: titre,
+            auteur: auteur,
+            nombreDePage: nombreDePage
+        }
+        const newListeLivres = [...this.state.livres];
+        newListeLivres.push(newLivre);
+
+        this.setState(oldState => {
+            return {
+                livres: newListeLivres,
+                lastIdLivre: oldState.lastIdLivre + 1
+            }
+        })
+        this.props.fermerAjoutLivre();
+
+    }
 
 
     render(){
@@ -61,7 +81,7 @@ class Livres extends Component {
                     </tbody>
                 </table>
 
-                {this.props.ajoutLivre && <FormulaireAjout />}
+                {this.props.ajoutLivre && <FormulaireAjout validation= {this.handleAjoutLivre}/>}
 
                 
             </>
