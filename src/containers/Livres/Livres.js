@@ -28,7 +28,13 @@ class Livres extends Component {
         newLivres.splice(livreIndexTab,1);
 
         this.setState({livres:newLivres});
-}
+    }
+
+    handleAjoutLivre = (titre, auteur, nombreDePage) =>{
+        console.log(titre);
+        console.log(auteur);
+        console.log(nombreDePage);
+    }
 
 
     render(){
@@ -61,7 +67,7 @@ class Livres extends Component {
                     </tbody>
                 </table>
 
-                {this.props.ajoutLivre && <FormulaireAjout />}
+                {this.props.ajoutLivre && <FormulaireAjout validation= {this.handleAjoutLivre}/>}
 
                 
             </>
