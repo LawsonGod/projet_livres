@@ -14,11 +14,11 @@ class Livres extends Component {
             {id: "6", titre: "Ce que tu as fait de moi", auteur: "Karine Giebel", nombreDePage: "528"},
             {id: "7", titre: "Dimanche", auteur: "Georges Simenon", nombreDePage: "200"},
             {id: "8", titre: " Le Chien jaune", auteur: "Georges Simenon", nombreDePage: "150"}
-
-            
-        ]
+        ],
+        lastIdLivre : 8
 
     }
+
     handleSuppressionLivre = (id) => {
         const livreIndexTab = this.state.livres.findIndex(element => {
                     return element.id === id;
@@ -31,9 +31,22 @@ class Livres extends Component {
     }
 
     handleAjoutLivre = (titre, auteur, nombreDePage) =>{
-        console.log(titre);
-        console.log(auteur);
-        console.log(nombreDePage);
+        const newLivre = {
+            id:this.state.lastIdLivre + 1,
+            titre: titre,
+            auteur: auteur,
+            nombreDePage: nombreDePage
+        }
+        const newListeLivres = [...this.state.livres];
+        newListeLivres.push(newLivre);
+
+        this.setState(oldState => {
+            return {
+                livres: newListeLivres,
+                lastIdLivre: oldState.lastIdLivre + 1
+            }
+        })
+
     }
 
 
